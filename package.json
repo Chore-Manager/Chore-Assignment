@@ -1,0 +1,44 @@
+{
+  "name": "chore-assignment",
+  "version": "1.0.0",
+  "description": "Tracking and assigning household chores",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ECRI37-YetiCrab/Chore-Assignment.git"
+  },
+  "keywords": [],
+  "author": "yeti-carb",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ECRI37-YetiCrab/Chore-Assignment/issues"
+  },
+  "homepage": "https://github.com/ECRI37-YetiCrab/Chore-Assignment#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "pg": "^8.8.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.5",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-react": "^7.18.6",
+    "babel-loader": "^9.1.0",
+    "concurrently": "^7.6.0",
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.7.2",
+    "html-webpack-plugin": "^5.5.0",
+    "nodemon": "^2.0.20",
+    "postcss": "^8.4.19",
+    "postcss-loader": "^7.0.2",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1"
+  }
+}
