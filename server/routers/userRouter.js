@@ -1,11 +1,16 @@
 // router for requests to the /user endpoint
-const express = require('express')
-const { send } = require('process')
+const express = require('express');
+const { send } = require('process');
 
 // import the controller
-const userController = require('../controllers/userController')
+const userController = require('../controllers/userController');
 
-const router = express.Router()
+const router = express.Router();
+
+// add user
+router.post('/user', userController.createUser, (req, res) => {
+  return res.status(200).json();
+});
 
 // Get request for entire page
 // Get requests to populate all drop downs
@@ -17,4 +22,4 @@ const router = express.Router()
 // Settings (delete stuff from drop down):
 // Delete request to remove person, room, chore from dropdown
 
-module.exports = router
+module.exports = router;
