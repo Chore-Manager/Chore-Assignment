@@ -1,26 +1,26 @@
-const path = require('path')
-const express = require('express')
+const path = require('path');
+const express = require('express');
 // const { send } = require('process')
-const cors = require('cors')
+const cors = require('cors');
 
 // import routers
-const choreRouter = require('./routers/choreRouter')
-const userRouter = require('./routers/userRouter')
+const choreRouter = require('./routers/choreRouter');
+const userRouter = require('./routers/userRouter');
 
-const app = express()
-const PORT = 3000
+const app = express();
+const PORT = 3000;
 
 // use cors
-app.use(cors())
+app.use(cors());
 
 // handle parsing of request body
-app.use(express.json())
+app.use(express.json());
 
 // handle static requests - double check with Rachel
-app.use(express.static('client'))
+app.use(express.static('client'));
 
 // send requests to specific routers
-app.use('/chore', choreRouter)
-app.use('/user', userRouter)
+app.use('/chore', choreRouter);
+app.use('/user', userRouter);
 
-module.exports = app
+module.exports = app;
