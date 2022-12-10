@@ -8,6 +8,7 @@ const choreRouter = require('./routers/choreRouter');
 const userRouter = require('./routers/userRouter');
 const choreController = require('./controllers/choreController');
 const userController = require('./controllers/userController');
+const jointController = require('./controllers/jointController');
 
 const app = express();
 const PORT = 3000;
@@ -24,7 +25,8 @@ app.use(express.static('client'));
 app.get(
   '/choresAndUsers',
   choreController.getChores,
-  // userController.getUsers,
+  userController.getUsers,
+  jointController.combineUsersAndChores,
   (req, res) => {
     return res.status(200).json(res.locals.usersAndChores);
   }
