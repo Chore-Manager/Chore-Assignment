@@ -11,10 +11,6 @@ header {
   grid-template-areas: 'sidebar feed';
 }
 
-.sidebar {
-  border: 1px solid black;
-}
-
 .main {
   border: 1px solid black;
 }
