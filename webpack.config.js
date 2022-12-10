@@ -9,6 +9,9 @@ module.exports = {
     publicPath: '/',
     filename: 'bundle.js',
   },
+  watchOptions: {
+    ignored: /node_modules/,
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, './client/index.html'),
