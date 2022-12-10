@@ -1,7 +1,6 @@
 import React from 'react';
 
 const AddChore = ({ chores, selectedChore, setSelectedChore }) => {
-  console.log('chore selected');
   return (
     <select
       value={selectedChore}

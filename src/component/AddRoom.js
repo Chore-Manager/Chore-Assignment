@@ -1,7 +1,6 @@
 import React from 'react';
 
 const AddRoom = ({ rooms, selectedRoom, setSelectedRoom }) => {
-  console.log('room selected');
   return (
     <select
       value={selectedRoom}
