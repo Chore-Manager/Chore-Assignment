@@ -19,9 +19,6 @@ const choreController = {
       });
   },
 
-  // filter chores down to the room
-  filterByRoom: (req, res, next) => {},
-
   // add a chore to the database
   addChore: (req, res, next) => {
     const { name, room } = req.body;
