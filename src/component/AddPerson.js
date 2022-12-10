@@ -1,10 +1,18 @@
 import React from 'react';
 
-const AddPerson = () => {
+const AddPerson = ({ names, selectedName, setSelectedName }) => {
+  console.log('name selected');
   return (
-    <div>
-      <h2>This is the AddPerson Comp</h2>
-    </div>
+    <select
+      value={selectedName}
+      onChange={(e) => setSelectedName(e.target.value)}
+    >
+      {names.map((value) => (
+        <option value={value} key={value}>
+          {value}
+        </option>
+      ))}
+    </select>
   );
 };
 
