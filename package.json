@@ -26,6 +26,8 @@
   },
   "homepage": "https://github.com/ECRI37-YetiCrab/Chore-Assignment#readme",
   "dependencies": {
+    "@mdi/js": "^7.0.96",
+    "@mdi/react": "^1.6.1",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "pg": "^8.8.0",

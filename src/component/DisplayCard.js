@@ -4,6 +4,7 @@ import style from './css/displayCard.css';
 
 const DisplayCard = () => {
   const [people, setPeople] = useState([]);
+  // const [chores, setChores] = useState([]);
   // const data = [
   //   {
   //    users: [{id: 1, name: 'Tomas'}],
@@ -11,16 +12,12 @@ const DisplayCard = () => {
   //   },
   // ];
 
-  // {
-  //   chores: []
-  //   users: []
-  // }
   useEffect(() => {
-    fetch('/')
+    fetch('/user')
       .then((response) => response.json())
       .then((data) => {
         setPeople(data);
-        console.log('Success:', data);
+        console.log('User Res:', data);
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -28,13 +25,13 @@ const DisplayCard = () => {
   }, []);
 
   //iterating over fetched data, passing it to Card component and rendering it to the page
-  // const peopleElems = people.map((person, index) => {
-  //   return <Card key={index} person={person} />;
-  // });
-
-  const peopleElems = people.map((personDetail, index) => {
-    return <Card key={index} person={personDetail} />;
+  const peopleElems = people.map((person, index) => {
+    return <Card key={index} person={person} />;
   });
+
+  // const peopleElems = people.map((personDetail, index) => {
+  //   return <Card key={index} person={personDetail} />;
+  // });
 
   return <div className="cards-container">Cards: {peopleElems}</div>;
 };
