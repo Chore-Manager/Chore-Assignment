@@ -8,8 +8,6 @@ const choreController = {
     // query the db to get all chores
     db.query(text)
       .then((data) => {
-        console.log('got chores from the db');
-        console.log('data from db: ', data.rows);
         res.locals.chores = data.rows;
         return next();
       })
@@ -47,7 +45,15 @@ const choreController = {
 
   // assign a chore to a user
   updateChore: (req, res, next) => {
-    const { choreName, userName, }
+    const { choreName, userName, room } = req.body;
+    // get the chore with the matching choreName and room,
+    // get the name that matches the given userName
+    // assign the userName ID to the assigned user ID value on the chore
+
+    const text = `UPDATE chores 
+    LEFT JOIN users
+    ON chores 
+    SET (assigned_user_id=)`;
   },
 };
 
