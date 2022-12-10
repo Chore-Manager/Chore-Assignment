@@ -21,7 +21,7 @@ const Card = ({ person }) => {
 
   //delete data from database
   const editData = async () => {
-    const response = await fetch('/user', {
+    const response = await fetch('/chore', {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
