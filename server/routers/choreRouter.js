@@ -26,3 +26,5 @@ router.post('/', choreController.addChore, (req, res) => {
 router.patch('/', choreController.updateChore, (req, res) => {
   return res.status(204).json(res.locals.updatedChore);
 });
+
+module.exports = router;
