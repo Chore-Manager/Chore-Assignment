@@ -5,10 +5,15 @@ users
 **********
 id (use SERIAL so it auto increments) primary key
 name
+
+users (stretch)
+**************
 household?
 role?
 username?
 password?
+
+
 
 chores
 *********
@@ -18,7 +23,7 @@ room id
 assigned user id
 
 rooms
-************8
+************
 id (auto increment) primary key
 room name
 
