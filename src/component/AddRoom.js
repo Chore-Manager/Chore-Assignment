@@ -1,10 +1,18 @@
 import React from 'react';
 
-const AddRoom = () => {
+const AddRoom = ({ rooms, selectedRoom, setSelectedRoom }) => {
+  console.log('room selected');
   return (
-    <div>
-      <h2>This is the AddRoom Comp</h2>
-    </div>
+    <select
+      value={selectedRoom}
+      onChange={(e) => setSelectedRoom(e.target.value)}
+    >
+      {rooms.map((value) => (
+        <option value={value} key={value}>
+          {value}
+        </option>
+      ))}
+    </select>
   );
 };
 
