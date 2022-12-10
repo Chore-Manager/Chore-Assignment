@@ -26,17 +26,29 @@ const choreController = {
 
   // add a chore to the database
   addChore: (req, res, next) => {
-    const { choreName, room } = req.body;
-    const values = [choreName, room];
+    const { name, room } = req.body;
+    const values = [name, room];
     const text = `INSERT INTO chores
     (chore, room)
     VALUES ($1, $2);`;
 
-    db.query(text, values).then((data) => {});
+    db.query(text, values)
+      .then(() => {
+        res.locals.newChore = { name, room };
+        return next();
+      })
+      .catch((error) => {
+        return next({
+          log: 'error in addChore method in choreController',
+          message: { error },
+        });
+      });
   },
 
   // assign a chore to a user
-  updateChore: (req, res, next) => {},
+  updateChore: (req, res, next) => {
+    const { choreName, userName, }
+  },
 };
 
 module.exports = choreController;

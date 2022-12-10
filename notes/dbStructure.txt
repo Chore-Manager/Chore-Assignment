@@ -41,7 +41,7 @@ chores
 id (auto increment) primary key
 chore
 room
-assigned user id
+assigned_user_id
 
 ex: {
     id: 76,
