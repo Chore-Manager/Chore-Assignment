@@ -34,7 +34,7 @@ password?
 chores
 *********
 id (auto increment) primary key
-chore name
+chore
 room
 assigned user id
 
