@@ -1,35 +1,54 @@
 DB Structure
 **************
 
+Command used to setup user table
+*********************************
+CREATE TABLE users
+(ID SERIAL PRIMARY KEY,
+name VARCHAR NOT NULL);
+
+
+Command used to setup chore table
+***********************************
+CREATE TABLE chores
+(ID SERIAL PRIMARY KEY,
+chore VARCHAR NOT NULL,
+room VARCHAR NOT NULL,
+assigned_user_id INT);
+
 users
 **********
 id (use SERIAL so it auto increments) primary key
 name
+
+
+users (stretch)
+**************
 household?
 role?
 username?
 password?
 
+
+
 chores
 *********
 id (auto increment) primary key
 chore name
-room id
+room
 assigned user id
 
-rooms
-************8
-id (auto increment) primary key
-room name
 
 
-join table for chore dropdown
+
+
+joins for queries for chore dropdown
 *******************************
 chore name
 room (seleted from dropdown)
 assigned user is empty
 
-join table for user's assigned chores
+joins for queries for user's assigned chores
 **************************************
 person name
 chores assigned to their id
