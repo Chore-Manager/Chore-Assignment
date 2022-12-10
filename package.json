@@ -32,6 +32,8 @@
     "concurrently": "^7.6.0",
     "cross-env": "^7.0.3",
     "css-loader": "^6.7.2",
+    "eslint": "^8.29.0",
+    "eslint-plugin-react": "^7.31.11",
     "html-webpack-plugin": "^5.5.0",
     "nodemon": "^2.0.20",
     "postcss": "^8.4.19",
