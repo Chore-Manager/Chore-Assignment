@@ -1,27 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const options = ['Rachel', 'John', 'Tomas', 'Dennis'];
-
-function AddPerson() {
-  const [selected, setSelected] = useState('');
-  const [names, setNames] = useState([]);
-  const submit = () => {
-    console.log(selected);
-  };
+const AddPerson = ({ names, selectedName, setSelectedName }) => {
+  console.log('name selected');
   return (
-    <form>
-      <select value={selected} onChange={(e) => setSelected(e.target.value)}>
-        {options.map((value) => (
-          <option value={value} key={value}>
-            {value}
-          </option>
-        ))}
-      </select>
-      <button type="button" onClick={submit}>
-        Submit
-      </button>
-    </form>
+    <select
+      value={selectedName}
+      onChange={(e) => setSelectedName(e.target.value)}
+    >
+      {names.map((value) => (
+        <option value={value} key={value}>
+          {value}
+        </option>
+      ))}
+    </select>
   );
-}
+};
 
 export default AddPerson;

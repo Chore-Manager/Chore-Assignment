@@ -1,10 +1,18 @@
 import React from 'react';
 
-const AddChore = () => {
+const AddChore = ({ chores, selectedChore, setSelectedChore }) => {
+  console.log('chore selected');
   return (
-    <div>
-      <h2>This is the AddChore Comp</h2>
-    </div>
+    <select
+      value={selectedChore}
+      onChange={(e) => setSelectedChore(e.target.value)}
+    >
+      {chores.map((value) => (
+        <option value={value} key={value}>
+          {value}
+        </option>
+      ))}
+    </select>
   );
 };
 
