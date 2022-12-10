@@ -1,7 +1,5 @@
 import React from 'react';
-import AddPerson from './AddPerson';
-import AddChore from './AddChore';
-import AddRoom from './AddRoom';
+import Sidebar from './Sidebar';
 import Navbar from './Navbar';
 import DisplayCard from './DisplayCard';
 
@@ -14,13 +12,7 @@ export default function App() {
         <Navbar />
       </header>
       <div className="grid-container">
-        <nav className="sidebar">
-          <h2>this is the sidebar</h2>
-          <AddPerson />
-          <AddRoom />
-          <AddChore />
-          <button>Add</button>
-        </nav>
+        <Sidebar />
         <main className="main">
           <DisplayCard />
         </main>

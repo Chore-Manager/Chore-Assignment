@@ -1,0 +1,16 @@
+.main {
+  background-color: lightblue;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+    rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  width: 500px;
+  height: 600px;
+  margin: 10px;
+  background-color: #f8edeb;
+  border-radius: 12px;
+  color: rgb(50, 50, 50);
+}
