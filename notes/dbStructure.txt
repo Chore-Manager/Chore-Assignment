@@ -22,6 +22,11 @@ id (use SERIAL so it auto increments) primary key
 name
 
 
+ex: {
+    id: 3,
+    name: 'bob'
+}
+
 users (stretch)
 **************
 household?
@@ -37,6 +42,13 @@ id (auto increment) primary key
 chore
 room
 assigned user id
+
+ex: {
+    id: 76,
+    chore: 'sweep',
+    room: 'kitchen',
+    assigned_user_id: 3
+}
 
 
 
