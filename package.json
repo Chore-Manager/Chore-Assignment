@@ -9,6 +9,11 @@
     "dev": "NODE_ENV=development nodemon server/server.js & NODE_ENV=development webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "nodemonConfig": {
+    "ignore": [
+      "client"
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ECRI37-YetiCrab/Chore-Assignment.git"

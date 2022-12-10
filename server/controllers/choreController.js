@@ -8,6 +8,8 @@ const choreController = {
     // query the db to get all chores
     db.query(text)
       .then((data) => {
+        console.log('got chores from the db');
+        console.log('data from db: ', data.rows);
         res.locals.chores = data.rows;
         return next();
       })
