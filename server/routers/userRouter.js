@@ -7,14 +7,23 @@ const userController = require('../controllers/userController');
 
 const router = express.Router();
 
-// add user
+// get user - populates user dropdown
+router.get('/user', userController.getUsers, (req, res) => {
+  return res.status(200).json(res.locals.users);
+});
+
+// add user - add user to user dropdown
 router.post('/user', userController.createUser, (req, res) => {
+  return res.status(200).json(res.locals.newUser);
+});
+
+// delete user from user dropdown
+router.delete('/user', userController.removeUser, (req, res) => {
   return res.status(200).json();
 });
 
-// Get request for entire page
 // Get requests to populate all drop downs
-// Post request to add a user, chore, room
+// Post request to add a user
 // Patch request to add a card to the card list
 // Patch request to remove person from chore
 // Delete request to remove a card
