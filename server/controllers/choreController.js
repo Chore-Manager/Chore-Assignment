@@ -26,6 +26,7 @@ const choreController = {
   addChore: (req, res, next) => {
     const { name, room } = req.body;
     const values = [name, room];
+
     const text = `INSERT INTO chores
     (chore, room)
     VALUES ($1, $2);`;
@@ -49,11 +50,34 @@ const choreController = {
     // get the chore with the matching choreName and room,
     // get the name that matches the given userName
     // assign the userName ID to the assigned user ID value on the chore
+    let userID;
+    const userNameQuery = `SELECT ID 
+    FROM users
+    WHERE name=$1;`;
+    const userNameValue = [userName];
+    // first query to get the user ID based on the user name
+    db.query(userNameQuery, userNameValue)
+      .then((data) => {
+        userID = data.rows[0].id;
+      })
+      .then(() => {
+        const choreQuery = `UPDATE chores 
+        SET assigned_user_id=$1
+        WHERE chore=$2 AND room=$3;`;
 
-    const text = `UPDATE chores 
-    LEFT JOIN users
-    ON chores 
-    SET (assigned_user_id=)`;
+        const choreValues = [userID, choreName, room];
+        // second query to update the assigned user in the chore table
+        db.query(choreQuery, choreValues)
+          .then(() => {
+            return next();
+          })
+          .catch((error) => {
+            return next({
+              log: 'error when updating chore in updateChore in choreController',
+              message: `error: ${error}`,
+            });
+          });
+      });
   },
 };
 

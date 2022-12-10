@@ -24,7 +24,7 @@ router.post('/', choreController.addChore, (req, res) => {
 
 // patch requests to chore would be for assigning new chores to a user
 router.patch('/', choreController.updateChore, (req, res) => {
-  return res.status(204).json(res.locals.updatedChore);
+  return res.sendStatus(204);
 });
 
 module.exports = router;

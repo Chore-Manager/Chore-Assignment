@@ -5,7 +5,7 @@ const userController = {};
 
 userController.getUsers = async (req, res, next) => {
   try {
-    const sqlQuery = 'SELECT * FROM users';
+    const sqlQuery = 'SELECT * FROM users;';
     const result = await db.query(sqlQuery);
     res.locals.users = result.rows;
     return next();
