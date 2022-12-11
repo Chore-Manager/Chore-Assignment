@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AddRoom = ({ rooms, selectedRoom, setSelectedRoom }) => {
+const ListRoom = ({ rooms, selectedRoom, setSelectedRoom }) => {
   return (
     <select
       value={selectedRoom}
@@ -19,4 +19,4 @@ const AddRoom = ({ rooms, selectedRoom, setSelectedRoom }) => {
   );
 };
 
-export default AddRoom;
+export default ListRoom;

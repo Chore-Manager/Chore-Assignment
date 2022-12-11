@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AddChore = ({ chores, selectedChore, setSelectedChore }) => {
+const ListChore = ({ chores, selectedChore, setSelectedChore }) => {
   return (
     <select
       value={selectedChore}
@@ -19,4 +19,4 @@ const AddChore = ({ chores, selectedChore, setSelectedChore }) => {
   );
 };
 
-export default AddChore;
+export default ListChore;

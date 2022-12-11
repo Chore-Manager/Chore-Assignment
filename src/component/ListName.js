@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AddPerson = ({ names, selectedName, setSelectedName }) => {
+const ListName = ({ names, selectedName, setSelectedName }) => {
   return (
     <select
       value={selectedName}
@@ -19,4 +19,4 @@ const AddPerson = ({ names, selectedName, setSelectedName }) => {
   );
 };
 
-export default AddPerson;
+export default ListName;
