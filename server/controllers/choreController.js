@@ -21,8 +21,8 @@ const choreController = {
 
   // add a chore to the database
   addChore: (req, res, next) => {
-    const { name, room } = req.body;
-    const values = [name, room];
+    const { chore, room } = req.body;
+    const values = [chore, room];
 
     const text = `INSERT INTO chores
     (chore, room)
@@ -30,7 +30,7 @@ const choreController = {
 
     db.query(text, values)
       .then(() => {
-        res.locals.newChore = { name, room };
+        res.locals.newChore = { chore, room };
         return next();
       })
       .catch((error) => {
@@ -79,6 +79,8 @@ const choreController = {
     await db
       .query(choreQuery, choreValues)
       .then(() => {
+        console.log('successfully assigned chore');
+        res.locals.response = `assigned ${choreName} to ${userName}`;
         return next();
       })
       .catch((error) => {
@@ -96,7 +98,7 @@ const choreController = {
     const values = [chore, room];
     db.query(text, values)
       .then(() => {
-        console.log('chore: ', chore, ' deleted');
+        res.locals.response = `deleted ${chore} in ${room} from the DB.`;
         return next();
       })
       .catch((error) => {

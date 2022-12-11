@@ -46,6 +46,7 @@ const Sidebar = () => {
   // submits the form and assigns chore based on selected name, room, and chore
   const assignChore = (e) => {
     e.preventDefault();
+
     fetch('http://localhost:3000/chore', {
       method: 'PATCH',
       headers: {
@@ -108,6 +109,7 @@ const Sidebar = () => {
         console.log(data);
       })
       .catch((err) => {
+        console.log('something happened here');
         console.log(err);
       });
   };
