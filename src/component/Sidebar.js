@@ -58,14 +58,14 @@ const Sidebar = () => {
         room: selectedRoom,
         assign: true,
       }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    });
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   };
 
   // deletes selected name from dropdown menu
@@ -90,7 +90,7 @@ const Sidebar = () => {
       });
   };
 
-  // adds new name from dropdown menu
+  // adds new name to the dropdown menu
   const addName = (e) => {
     e.preventDefault();
     fetch('http://localhost:3000/user', {
@@ -101,6 +101,52 @@ const Sidebar = () => {
       },
       body: JSON.stringify({
         name: newName,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  // adds new chore to the dropdown menu
+  const addChore = (e) => {
+    e.preventDefault();
+    fetch('http://localhost:3000/chore', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        chore: newChore,
+        room: selectedRoom,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  // deletes selected chore from dropdown menu
+  const deleteChore = (e) => {
+    e.preventDefault();
+    fetch('http://localhost:3000/chore', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        chore: selectedChore,
+        room: selectedRoom,
       }),
     })
       .then((response) => response.json())
@@ -140,7 +186,6 @@ const Sidebar = () => {
             selectedRoom={selectedRoom}
             setSelectedRoom={setSelectedRoom}
           />
-          <button>Add Room </button>
         </div>
         <div>
           <ListChore
@@ -148,7 +193,17 @@ const Sidebar = () => {
             selectedChore={selectedChore}
             setSelectedChore={setSelectedChore}
           />
-          <button>Add Chore </button>
+          <button onClick={deleteChore}>Delete current chore</button>
+          <form className="add-chore">
+            <input
+              name="newChore"
+              placeholder="add new chore"
+              onChange={(e) => setNewChore(e.target.value)}
+            />
+            <button type="submit" onClick={addChore}>
+              Add Chore
+            </button>
+          </form>
         </div>
         <input type="submit" value="Submit" onClick={assignChore} />
       </form>
