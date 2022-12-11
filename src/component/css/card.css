@@ -1,0 +1,27 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 300px;
+  height: 500px;
+  margin: 10px;
+  background-color: #f8edeb;
+  border-radius: 12px;
+  color: rgb(50, 50, 50);
+}
+
+.deleteBtn,
+.editBtn {
+  background-color: #f8edeb;
+  border: none;
+  transition: 0.3s all ease-in-out;
+  cursor: pointer;
+}
+
+.deleteBtn:hover {
+  transform: scale(1.7);
+}
+.editBtn:hover {
+  transform: scale(1.7);
+}
