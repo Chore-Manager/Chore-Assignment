@@ -5,7 +5,11 @@ const AddPerson = ({ names, selectedName, setSelectedName }) => {
     <select
       value={selectedName}
       onChange={(e) => setSelectedName(e.target.value)}
+      selected
     >
+      <option defaultValue="Name" disabled selected>
+        Name
+      </option>
       {names.map((value) => (
         <option value={value} key={value}>
           {value}

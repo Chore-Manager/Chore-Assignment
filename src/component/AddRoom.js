@@ -5,7 +5,11 @@ const AddRoom = ({ rooms, selectedRoom, setSelectedRoom }) => {
     <select
       value={selectedRoom}
       onChange={(e) => setSelectedRoom(e.target.value)}
+      selected
     >
+      <option value="" disabled selected>
+        Room
+      </option>
       {rooms.map((value) => (
         <option value={value} key={value}>
           {value}
