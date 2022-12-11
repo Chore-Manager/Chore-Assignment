@@ -8,15 +8,6 @@ router.get('/', choreController.getChores, (req, res) => {
   return res.status(200).json(res.locals.chores);
 });
 
-router.get(
-  '/room',
-  choreController.getChores,
-  choreController.filterByRoom,
-  (req, res) => {
-    return res.status(200).json(res.locals.choresByRoom);
-  }
-);
-
 // post requests for chore would be to add to the chore table in the db
 router.post('/', choreController.addChore, (req, res) => {
   return res.status(204).json(res.locals.newChore);
@@ -24,7 +15,12 @@ router.post('/', choreController.addChore, (req, res) => {
 
 // patch requests to chore would be for assigning new chores to a user
 router.patch('/', choreController.updateChore, (req, res) => {
-  return res.status(204).json(res.locals.updatedChore);
+  return res.sendStatus(204);
+});
+
+// delete requests to chore should remove the row from the database
+router.delete('/', choreController.deleteChore, (req, res) => {
+  return res.sendStatus(204);
 });
 
 module.exports = router;

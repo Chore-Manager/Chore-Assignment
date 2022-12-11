@@ -1,7 +1,6 @@
 import React from 'react';
 
 const AddPerson = ({ names, selectedName, setSelectedName }) => {
-  console.log('name selected');
   return (
     <select
       value={selectedName}
