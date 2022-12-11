@@ -88,6 +88,24 @@ const choreController = {
         });
       });
   },
+
+  deleteChore: (req, res, next) => {
+    const { chore, room } = req.body;
+    const text = `DELETE FROM chores
+    WHERE chore=$1 AND room=$2;`;
+    const values = [chore, room];
+    db.query(text, values)
+      .then(() => {
+        console.log('chore: ', chore, ' deleted');
+        return next();
+      })
+      .catch((error) => {
+        return next({
+          log: 'error in deleteChore in choreController',
+          message: `error: ${error}`,
+        });
+      });
+  },
 };
 
 module.exports = choreController;

@@ -19,5 +19,8 @@ router.patch('/', choreController.updateChore, (req, res) => {
 });
 
 // delete requests to chore should remove the row from the database
+router.delete('/', choreController.deleteChore, (req, res) => {
+  return res.sendStatus(204);
+});
 
 module.exports = router;
