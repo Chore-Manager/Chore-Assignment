@@ -1,21 +1,29 @@
-import React from 'react';
-import Icon from '@mdi/react';
-import { mdiDeleteForeverOutline, mdiCogOutline } from '@mdi/js';
+import React, { useEffect, useState } from 'react';
+import Icon from '@mdi/react'; //module for icons
+import { mdiDeleteForeverOutline, mdiCogOutline } from '@mdi/js'; //module for icons
 import style from './css/card.css';
 
-const Card = ({ person }) => {
-  // const { name, room, chores } = personDetail;
-
+const Card = ({
+  userName,
+  id,
+  chores,
+  setChores,
+  setUsers,
+  setRooms,
+  rooms,
+}) => {
   //delete data from database
-  const deleteData = async () => {
+  const deleteUser = async () => {
     const response = await fetch('/user', {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ name: person.name }),
+      body: JSON.stringify({ name: userName }),
     });
     const data = await response.json();
+    setUsers((prev) => prev.filter((user) => user.name !== userName)); //filtering out the deleted user from the state
+
     console.log('Delete Data:', data);
   };
 
@@ -26,7 +34,7 @@ const Card = ({ person }) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ name: person.name }),
+      body: JSON.stringify({ name: userName }),
     });
     const data = await response.json();
     console.log('Edited Data:', data);
@@ -36,8 +44,8 @@ const Card = ({ person }) => {
   const onDelete = async (e) => {
     e.preventDefault();
     try {
-      await deleteData();
-      console.log('Delete Data:', deleteData);
+      await deleteUser();
+      console.log('Delete Data:', deleteUser);
     } catch (err) {
       console.error(err.message);
     }
@@ -57,11 +65,9 @@ const Card = ({ person }) => {
   return (
     <div className="card">
       <div className="card-name">
-        <h3>Name: {person.name}</h3>
+        <h3>{userName}</h3>
       </div>
-      {/* <div className="room">
-        <h3>Room: {person.room}</h3>
-      </div> */}
+      <div className="room">{/* <h3>Room: {chores.room}</h3> */}</div>
       {/* <div className="chores">
         Chores:  */}
       {/* {person.map((chore, index) => (
