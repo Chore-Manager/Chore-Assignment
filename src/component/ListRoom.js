@@ -1,11 +1,15 @@
 import React from 'react';
 
-const AddRoom = ({ rooms, selectedRoom, setSelectedRoom }) => {
+const ListRoom = ({ rooms, selectedRoom, setSelectedRoom }) => {
   return (
     <select
       value={selectedRoom}
       onChange={(e) => setSelectedRoom(e.target.value)}
+      selected
     >
+      <option value="" disabled selected>
+        Room
+      </option>
       {rooms.map((value) => (
         <option value={value} key={value}>
           {value}
@@ -15,4 +19,4 @@ const AddRoom = ({ rooms, selectedRoom, setSelectedRoom }) => {
   );
 };
 
-export default AddRoom;
+export default ListRoom;
