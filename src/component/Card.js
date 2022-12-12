@@ -3,8 +3,20 @@ import CardRoom from './CardRoom';
 import Icon from '@mdi/react'; //module for icons
 import { mdiDeleteForeverOutline, mdiCogOutline } from '@mdi/js'; //module for icons
 import style from './css/card.css';
+import classNames from 'classnames';
 
-const Card = ({ userName, userID, chores, setUsers }) => {
+const Card = ({
+  userName,
+  userID,
+  user,
+  chores,
+  setChores,
+  setUsers,
+  choreName,
+}) => {
+  const [allUserRooms, setAllUserRooms] = useState([]);
+  const [selectedRoom, setSelectedRoom] = useState('');
+
   //delete user from database
   const deleteUser = async () => {
     const response = await fetch('/user', {
@@ -70,8 +82,8 @@ const Card = ({ userName, userID, chores, setUsers }) => {
   });
 
   return (
-    <div className="card">
-      <div className="card-name">
+    <div className="card bg-primary">
+      <div className="card-name bg-secondary">
         <h3>{userName}</h3>
       </div>
       {userRooms}
