@@ -46,7 +46,7 @@ const Sidebar = () => {
         setRooms([...new Set(roomsArr)]);
         setChores([...new Set(choresArr)]);
       });
-  });
+  }, []);
 
   // submits the form and assigns chore based on selected name, room, and chore
   const assignChore = (e) => {

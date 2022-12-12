@@ -2,34 +2,16 @@ import React, { useState, useEffect } from 'react';
 import Card from './Card';
 import style from './css/displayCard.css';
 
-const DisplayCard = () => {
-  // const [people, setPeople] = useState([]);
-  const [users, setUsers] = useState([]);
-  const [chores, setChores] = useState([]);
-
+const DisplayCard = ({ users, chores, setUsers, setChores }) => {
   console.log('users', users);
   console.log('chores', chores);
-
-  //fetching all data from server and rendering it to the page
-  useEffect(() => {
-    fetch('/choresAndUsers')
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('data', data);
-        setUsers(data.users);
-        setChores(data.chores);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
-  }, []);
-
   //iterating over fetched data, passing it to Card component and rendering it to the page
   const userElems = users.map((user, index) => {
     return (
       <Card
         key={index}
         userName={user.name}
+        userID={user.id}
         chores={chores}
         setChores={setChores}
         setUsers={setUsers}
