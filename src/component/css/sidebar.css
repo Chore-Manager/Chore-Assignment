@@ -1,5 +1,6 @@
 .sidebar {
-  border: 1px solid black;
+  border-top-right-radius: 15px;
+  height: 100vw;
 }
 
 .choreForm {
@@ -9,12 +10,22 @@
   display: grid;
   gap: 10px;
   grid-template-columns: 200px;
-  background-color: #6b7283;
+  /* background-color: #6b7283; */
 }
 
 .assignChoreLabel {
   font-size: 1.25rem;
-  color: #71d5f4;
+  /* color: #71d5f4; */
 }
 
+button {
+  margin: 8px;
+}
 
+input[type='text'] {
+  margin: 10px;
+}
+
+select {
+  width: 70%;
+}

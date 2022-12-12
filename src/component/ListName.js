@@ -3,6 +3,7 @@ import React from 'react';
 const ListName = ({ users, selectedUserId, setSelectedUserId }) => {
   return (
     <select
+      className="select"
       value={selectedUserId}
       onChange={(e) => setSelectedUserId(e.target.value)}
       selected

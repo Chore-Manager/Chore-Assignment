@@ -20,6 +20,7 @@ const ListChore = ({
 
   return (
     <select
+      className="select"
       value={selectedChoreId}
       onChange={(e) => setSelectedChoreId(e.target.value)}
       selected

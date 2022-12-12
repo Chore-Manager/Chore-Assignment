@@ -1,5 +1,5 @@
 body {
-  background-color: #111111;
+  /* background-color: #111111; */
   font-family: Roboto, sans-serif;
 }
 
@@ -8,8 +8,4 @@ body {
   grid-template-columns: 350px;
   grid-template-rows: auto;
   grid-template-areas: 'sidebar feed';
-}
-
-.main {
-  border: 0.5px solid black;
 }
