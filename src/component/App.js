@@ -8,6 +8,7 @@ import style from './css/app.css';
 export default function App() {
   const [users, setUsers] = useState([]);
   const [chores, setChores] = useState([]);
+  const [rooms, setRooms] = useState([]);
 
   useEffect(() => {
     fetch('/choresAndUsers')
@@ -16,11 +17,15 @@ export default function App() {
         console.log('data', data);
         setUsers(data.users);
         setChores(data.chores);
+        const allRooms = [...new Set(data.chores.map((chore) => chore.room))];
+        setRooms(allRooms);
       })
       .catch((error) => {
         console.error('Error:', error);
       });
   }, []);
+
+  console.log('rooms', rooms);
 
   return (
     <div className="app">
@@ -38,6 +43,7 @@ export default function App() {
           <DisplayCard
             users={users}
             chores={chores}
+            rooms={rooms}
             setUsers={setUsers}
             setChores={setChores}
           />

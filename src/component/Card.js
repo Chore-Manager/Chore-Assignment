@@ -3,14 +3,24 @@ import Icon from '@mdi/react'; //module for icons
 import { mdiDeleteForeverOutline, mdiCogOutline } from '@mdi/js'; //module for icons
 import style from './css/card.css';
 
-const Card = ({ userName, userID, users, chores, setChores, setUsers }) => {
-  console.log(userName);
-  console.log(userID);
+const Card = ({
+  userName,
+  userID,
+  rooms,
+  users,
+  chores,
+  setChores,
+  setUsers,
+}) => {
+  const [selectedRoom, setSelectedRoom] = useState('');
+  const [selectedChore, setSelectedChore] = useState('');
+
   const assignRoomToUser = chores.map((chore) => {
     if (chore.assigned_user_id === userID) {
       return chore.room;
     }
   });
+
   const assignChoreToRoom = chores.map((chore) => {
     if (chore.assigned_user_id === userID) {
       return chore.chore;
@@ -75,9 +85,9 @@ const Card = ({ userName, userID, users, chores, setChores, setUsers }) => {
         <h3>{userName}</h3>
       </div>
       <div className="room">
-        <h4>Room: {assignRoomToUser}</h4>
+        <h4>Room: {}</h4>
       </div>
-      <div className="chores">Chores: {assignChoreToRoom}</div>
+      <div className="chores">Chores: {}</div>
       <div className="footer">
         <div className="actionsContainer">
           <button
