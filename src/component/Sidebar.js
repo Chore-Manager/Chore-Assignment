@@ -8,17 +8,22 @@ const Sidebar = () => {
   // names
   const [names, setNames] = useState([]);
   const [selectedName, setSelectedName] = useState(names[0]);
-  const [newName, setNewName] = useState('');
+  const [newName, setNewName] = useState(null);
 
   // rooms
   const [rooms, setRooms] = useState([]);
   const [selectedRoom, setSelectedRoom] = useState(rooms[0]);
-  const [newRoom, setNewRoom] = useState('');
 
   // chores
   const [chores, setChores] = useState([]);
   const [selectedChore, setSelectedChore] = useState(chores[0]);
-  const [newChore, setNewChore] = useState('');
+  const [newChore, setNewChore] = useState(null);
+
+  // state to show and hide add name form
+  const [nameShown, setNameShown] = useState(false);
+
+  // state to show and hide add chore form
+  const [choreShown, setChoreShown] = useState(false);
 
   // constantly checking for updates to name, room, and chores state
   useEffect(() => {
@@ -160,6 +165,18 @@ const Sidebar = () => {
       });
   };
 
+  // show the addname form
+  const handleNameForm = (e) => {
+    e.preventDefault();
+    setNameShown((current) => !current);
+  };
+
+  // show the addchore form
+  const handleChoreForm = (e) => {
+    e.preventDefault();
+    setChoreShown((current) => !current);
+  };
+
   return (
     <div className="sidebar">
       <form className="choreForm">
@@ -171,16 +188,21 @@ const Sidebar = () => {
             setSelectedName={setSelectedName}
           />
           <button onClick={deleteName}>Delete current name</button>
-          <form className="add-name">
-            <input
-              name="newName"
-              placeholder="new name"
-              onChange={(e) => setNewName(e.target.value)}
-            />
-            <button type="submit" onClick={addName}>
-              Add Name
-            </button>
-          </form>
+
+          <button onClick={handleNameForm}>+</button>
+
+          {nameShown && (
+            <form className="add-name">
+              <input
+                name="newName"
+                placeholder="new name"
+                onChange={(e) => setNewName(e.target.value)}
+              />
+              <button type="submit" onClick={addName}>
+                Add Name
+              </button>
+            </form>
+          )}
         </div>
         <div>
           <ListRoom
@@ -192,20 +214,25 @@ const Sidebar = () => {
         <div>
           <ListChore
             chores={chores}
+            selectedRoom={selectedRoom}
             selectedChore={selectedChore}
             setSelectedChore={setSelectedChore}
           />
           <button onClick={deleteChore}>Delete current chore</button>
-          <form className="add-chore">
-            <input
-              name="newChore"
-              placeholder="add new chore"
-              onChange={(e) => setNewChore(e.target.value)}
-            />
-            <button type="submit" onClick={addChore}>
-              Add Chore
-            </button>
-          </form>
+
+          <button onClick={handleChoreForm}>+</button>
+          {choreShown && (
+            <form className="add-chore">
+              <input
+                name="newChore"
+                placeholder="add new chore"
+                onChange={(e) => setNewChore(e.target.value)}
+              />
+              <button type="submit" onClick={addChore}>
+                Add Chore
+              </button>
+            </form>
+          )}
         </div>
         <input type="submit" value="Submit" onClick={assignChore} />
       </form>
