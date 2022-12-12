@@ -4,8 +4,6 @@ import { mdiDeleteForeverOutline, mdiCogOutline } from '@mdi/js'; //module for i
 import style from './css/card.css';
 
 const Card = ({ userName, userID, users, chores, setChores, setUsers }) => {
-  console.log(userName);
-  console.log(userID);
   const assignRoomToUser = chores.map((chore) => {
     if (chore.assigned_user_id === userID) {
       return chore.room;
