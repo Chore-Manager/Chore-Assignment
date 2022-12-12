@@ -8,8 +8,10 @@ import style from './css/app.css';
 export default function App() {
   const [users, setUsers] = useState([]);
   const [chores, setChores] = useState([]);
+  const [choreName, setChoreName] = useState('');
 
   useEffect(() => {
+    console.log('Fetching chores');
     fetch('/choresAndUsers')
       .then((response) => response.json())
       .then((data) => {
@@ -28,12 +30,12 @@ export default function App() {
         <Navbar />
       </header>
       <div className="grid-container">
-        <Sidebar
+        {/* <Sidebar
           users={users}
           chores={chores}
           setUsers={setUsers}
           setChores={setChores}
-        />
+        /> */}
         <main className="main">
           <DisplayCard
             users={users}

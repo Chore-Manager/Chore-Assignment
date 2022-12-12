@@ -7,7 +7,7 @@ import style from './css/sidebar.css';
 const Sidebar = ({ users, chores, setUsers, setChores }) => {
   // names
   //   const [names, setNames] = useState([]);
-  const [selectedUserId, setSelectedUserId] = useState([]);
+  const [selectedUserId, setSelectedUserId] = useState(null);
   const [newName, setNewName] = useState(null);
 
   // rooms
@@ -51,7 +51,8 @@ const Sidebar = ({ users, chores, setUsers, setChores }) => {
   // submits the form and assigns chore based on selected name, room, and chore
   const assignChore = (e) => {
     e.preventDefault();
-
+    // console.log('ASSIGN CHORE ID:', selectedChoreId);
+    console.log('ASSIGN USER ID:', selectedUserId);
     fetch('http://localhost:3000/chore', {
       method: 'PATCH',
       headers: {
