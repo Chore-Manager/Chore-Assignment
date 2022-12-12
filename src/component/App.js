@@ -10,6 +10,7 @@ export default function App() {
   const [chores, setChores] = useState([]);
 
   useEffect(() => {
+    console.log('Fetching chores');
     fetch('/choresAndUsers')
       .then((response) => response.json())
       .then((data) => {
@@ -28,6 +29,7 @@ export default function App() {
         <Navbar />
       </header>
       <div className="grid-container">
+
         <Sidebar
           users={users}
           chores={chores}
