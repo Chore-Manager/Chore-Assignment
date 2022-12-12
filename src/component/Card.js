@@ -5,7 +5,6 @@ import { mdiDeleteForeverOutline, mdiCogOutline } from '@mdi/js'; //module for i
 import style from './css/card.css';
 import classNames from 'classnames';
 
-
 const Card = ({
   userName,
   userID,
@@ -84,8 +83,8 @@ const Card = ({
   });
 
   return (
-    <div className={cardClass}>
-      <div className={cardNameClass}>
+    <div className="card bg-primary">
+      <div className="card-name bg-secondary">
         <h3>{userName}</h3>
       </div>
 
