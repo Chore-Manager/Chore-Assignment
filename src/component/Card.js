@@ -87,6 +87,7 @@ const Card = ({
       <div className="card-name bg-secondary">
         <h3>{userName}</h3>
       </div>
+
       {userRooms}
 
       <div className="footer">
