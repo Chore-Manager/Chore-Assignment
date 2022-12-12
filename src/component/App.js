@@ -7,7 +7,7 @@ import style from './css/app.css';
 
 export default function App() {
   return (
-    <div>
+    <div className="app">
       <header>
         <Navbar />
       </header>

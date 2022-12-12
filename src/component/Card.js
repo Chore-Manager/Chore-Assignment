@@ -3,16 +3,20 @@ import Icon from '@mdi/react'; //module for icons
 import { mdiDeleteForeverOutline, mdiCogOutline } from '@mdi/js'; //module for icons
 import style from './css/card.css';
 
-const Card = ({
-  userName,
-  id,
-  chores,
-  setChores,
-  setUsers,
-  setRooms,
-  rooms,
-}) => {
-  //delete data from database
+const Card = ({ userName, users, chores, setChores, setUsers }) => {
+  const [rooms, setRooms] = useState([]);
+  const [selectedChore, setChore] = useState('');
+  const [selectedRoom, setRoom] = useState('');
+  const [assignedId, setAssigned_user_id] = useState('');
+
+  const { chore, room, assigned_user_id } = chores;
+
+  const assignedID = chores.map((chore) => {
+    return chore.assigned_user_id;
+  });
+  console.log('assignedID', assignedID);
+
+  //delete user from database
   const deleteUser = async () => {
     const response = await fetch('/user', {
       method: 'DELETE',
@@ -27,7 +31,7 @@ const Card = ({
     console.log('Delete Data:', data);
   };
 
-  //delete data from database
+  //edit data from database
   const editData = async () => {
     const response = await fetch('/chore', {
       method: 'PATCH',
@@ -67,7 +71,9 @@ const Card = ({
       <div className="card-name">
         <h3>{userName}</h3>
       </div>
-      <div className="room">{/* <h3>Room: {chores.room}</h3> */}</div>
+      <div className="room">
+        <h4>Room: {}</h4>
+      </div>
       {/* <div className="chores">
         Chores:  */}
       {/* {person.map((chore, index) => (
@@ -88,7 +94,7 @@ const Card = ({
               horizontal
               vertical
               rotate={180}
-              color="red"
+              color="white"
             />
           </button>
           <button className="editBtn" type="submit" onClick={(e) => onEdit(e)}>
@@ -99,7 +105,7 @@ const Card = ({
               horizontal
               vertical
               rotate={180}
-              color="red"
+              color="white"
             />
           </button>
         </div>
