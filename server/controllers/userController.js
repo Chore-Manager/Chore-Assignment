@@ -38,14 +38,14 @@ userController.createUser = async (req, res, next) => {
 
 userController.removeUser = async (req, res, next) => {
   try {
-    const { name } = req.body;
-    console.log(name);
-    res.locals.removedUser = name;
+    const { id } = req.body;
+    console.log(id);
+    res.locals.removedUser = id;
     const sqlQuery = `
     DELETE FROM users
-    WHERE name=$1
+    WHERE id=$1
     `;
-    const insertArray = [name];
+    const insertArray = [id];
     const result = await db.query(sqlQuery, insertArray);
     return next();
   } catch (err) {
