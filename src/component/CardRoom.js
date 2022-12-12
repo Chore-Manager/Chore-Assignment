@@ -25,10 +25,9 @@ export default function CardRoom({ chores, roomName, userID }) {
   console.log('chores:', chores);
   return (
     <div className="card-room">
-      <h4>{roomName} </h4>
       <div className="checkbox">
         <input type="checkbox" onClick={handleClick} value={chores.id}></input>
-        {chores.chore}
+        {roomName} {chores.chore}
       </div>
     </div>
   );
