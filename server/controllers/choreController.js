@@ -50,8 +50,12 @@ const choreController = {
     // get the name that matches the given userName
     // assign the userName ID to the assigned user ID value on the chore
     // if we are assigning a user, we get the user id, if not, we are setting the assigned id to be an empty string
-    let userIDOption = '';
-    if (assign) userIDOption = userID;
+    let userIDOption = null;
+    res.locals.response = `unassigned chore# ${choreID}`;
+    if (assign) {
+      userIDOption = userID;
+      res.locals.response = `assigned chore# ${choreID} to user# ${userID}`;
+    }
 
     const text = `UPDATE chores
     SET assigned_user_id=$1
@@ -62,7 +66,6 @@ const choreController = {
     db.query(text, values)
       .then(() => {
         console.log('successfully assigned chore');
-        res.locals.response = `assigned chore# ${choreID} to user# ${userID}`;
         return next();
       })
       .catch((error) => {
