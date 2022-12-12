@@ -7,14 +7,23 @@ const Card = ({ userName, users, chores, setChores, setUsers }) => {
   const [rooms, setRooms] = useState([]);
   const [selectedChore, setChore] = useState('');
   const [selectedRoom, setRoom] = useState('');
-  const [assignedId, setAssigned_user_id] = useState('');
+  const [selectedUserID, setselectedUserID] = useState('');
 
-  const { chore, room, assigned_user_id } = chores;
+  // const { chore, room, assigned_user_id } = chores;
+  // const { name, id } = users;
 
-  const assignedID = chores.map((chore) => {
-    return chore.assigned_user_id;
-  });
-  console.log('assignedID', assignedID);
+  // const assignedID = chores.map((chore) => {
+  //   if (chore.assigned_user_id === id) {
+  //     return id;
+  //   }
+  // });
+  // console.log('assignedID', assignedID);
+
+  // const choreRooms = chores.map((chore) => {
+  //   if (chore.assigned_user_id === assignedID) {
+  //     return chore.room;
+  //   }
+  // });
 
   //delete user from database
   const deleteUser = async () => {
@@ -72,7 +81,7 @@ const Card = ({ userName, users, chores, setChores, setUsers }) => {
         <h3>{userName}</h3>
       </div>
       <div className="room">
-        <h4>Room: {}</h4>
+        <h4>Room: </h4>
       </div>
       {/* <div className="chores">
         Chores:  */}
