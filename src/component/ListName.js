@@ -1,18 +1,18 @@
 import React from 'react';
 
-const ListName = ({ names, selectedName, setSelectedName }) => {
+const ListName = ({ users, selectedUserId, setSelectedUserId }) => {
   return (
     <select
-      value={selectedName}
-      onChange={(e) => setSelectedName(e.target.value)}
+      value={selectedUserId}
+      onChange={(e) => setSelectedUserId(e.target.value)}
       selected
     >
       <option defaultValue="Name" disabled selected>
         Name
       </option>
-      {names.map((value) => (
-        <option value={value} key={value}>
-          {value}
+      {users.map((value) => (
+        <option value={value.id} key={value.name}>
+          {value.name}
         </option>
       ))}
     </select>

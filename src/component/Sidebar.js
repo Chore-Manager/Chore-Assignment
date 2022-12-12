@@ -4,19 +4,19 @@ import ListRoom from './ListRoom';
 import ListChore from './ListChore';
 import style from './css/sidebar.css';
 
-const Sidebar = () => {
+const Sidebar = ({ users, chores, setUsers, setChores }) => {
   // names
-  const [names, setNames] = useState([]);
-  const [selectedName, setSelectedName] = useState(names[0]);
+  //   const [names, setNames] = useState([]);
+  const [selectedUserId, setSelectedUserId] = useState([]);
   const [newName, setNewName] = useState(null);
 
   // rooms
-  const [rooms, setRooms] = useState([]);
-  const [selectedRoom, setSelectedRoom] = useState(rooms[0]);
+  const [newRoom, setNewRoom] = useState(null);
+  const [selectedRoom, setSelectedRoom] = useState([]);
 
   // chores
-  const [chores, setChores] = useState([]);
-  const [selectedChore, setSelectedChore] = useState(chores[0]);
+  // const [chores, setChores] = useState([]);
+  const [selectedChoreId, setSelectedChoreId] = useState([]);
   const [newChore, setNewChore] = useState(null);
 
   // state to show and hide add name form
@@ -25,28 +25,28 @@ const Sidebar = () => {
   // state to show and hide add chore form
   const [choreShown, setChoreShown] = useState(false);
 
-  // constantly checking for updates to name, room, and chores state
-  useEffect(() => {
-    fetch('http://localhost:3000/choresAndUsers/')
-      .then((response) => response.json())
-      .then((data) => {
-        const namesArr = [];
-        const roomsArr = [];
-        const choresArr = [];
-        data.users.map((el) => {
-          namesArr.push(el.name);
-        });
-        data.chores.map((el) => {
-          roomsArr.push(el.room);
-          if (selectedRoom === el.room) {
-            choresArr.push(el.chore);
-          }
-        });
-        setNames([...new Set(namesArr)]);
-        setRooms([...new Set(roomsArr)]);
-        setChores([...new Set(choresArr)]);
-      });
-  });
+  //   // constantly checking for updates to name, room, and chores state
+  //   useEffect(() => {
+  //     fetch('http://localhost:3000/choresAndUsers/')
+  //       .then((response) => response.json())
+  //       .then((data) => {
+  //         const namesArr = [];
+  //         const roomsArr = [];
+  //         const choresArr = [];
+  //         data.users.map((el) => {
+  //           namesArr.push(el.name);
+  //         });
+  //         data.chores.map((el) => {
+  //           roomsArr.push(el.room);
+  //           if (selectedRoom === el.room) {
+  //             choresArr.push(el.chore);
+  //           }
+  //         });
+  //         setNames([...new Set(namesArr)]);
+  //         setRooms([...new Set(roomsArr)]);
+  //         setChores([...new Set(choresArr)]);
+  //       });
+  //   });
 
   // submits the form and assigns chore based on selected name, room, and chore
   const assignChore = (e) => {
@@ -59,19 +59,18 @@ const Sidebar = () => {
         Accept: 'application/json',
       },
       body: JSON.stringify({
-        chore: selectedChore,
-        name: selectedName,
-        room: selectedRoom,
+        choreID: selectedChoreId,
+        userID: selectedUserId,
         assign: true,
       }),
-    });
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   // deletes selected name from dropdown menu
@@ -84,7 +83,7 @@ const Sidebar = () => {
         Accept: 'application/json',
       },
       body: JSON.stringify({
-        name: selectedName,
+        id: selectedUserId,
       }),
     })
       .then((response) => response.json())
@@ -130,7 +129,7 @@ const Sidebar = () => {
       },
       body: JSON.stringify({
         chore: newChore,
-        room: selectedRoom,
+        room: newRoom,
       }),
     })
       .then((response) => response.json())
@@ -152,8 +151,7 @@ const Sidebar = () => {
         Accept: 'application/json',
       },
       body: JSON.stringify({
-        chore: selectedChore,
-        room: selectedRoom,
+        choreID: selectedChoreId,
       }),
     })
       .then((response) => response.json())
@@ -180,12 +178,12 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <form className="choreForm">
-        <label>Assign a Chore: </label>
+        <label className="assignChoreLabel">Assign a Chore: </label>
         <div>
           <ListName
-            names={names}
-            selectedName={selectedName}
-            setSelectedName={setSelectedName}
+            users={users}
+            selectedUserId={selectedUserId}
+            setSelectedUserId={setSelectedUserId}
           />
           <button onClick={deleteName}>Delete current name</button>
 
@@ -206,7 +204,7 @@ const Sidebar = () => {
         </div>
         <div>
           <ListRoom
-            rooms={rooms}
+            chores={chores}
             selectedRoom={selectedRoom}
             setSelectedRoom={setSelectedRoom}
           />
@@ -215,8 +213,8 @@ const Sidebar = () => {
           <ListChore
             chores={chores}
             selectedRoom={selectedRoom}
-            selectedChore={selectedChore}
-            setSelectedChore={setSelectedChore}
+            selectedChoreId={selectedChoreId}
+            setSelectedChoreId={setSelectedChoreId}
           />
           <button onClick={deleteChore}>Delete current chore</button>
 
@@ -227,6 +225,11 @@ const Sidebar = () => {
                 name="newChore"
                 placeholder="add new chore"
                 onChange={(e) => setNewChore(e.target.value)}
+              />
+              <input
+                name="newRoom"
+                placeholder="add new room"
+                onChange={(e) => setNewRoom(e.target.value)}
               />
               <button type="submit" onClick={addChore}>
                 Add Chore

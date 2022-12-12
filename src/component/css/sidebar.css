@@ -3,8 +3,18 @@
 }
 
 .choreForm {
-    padding: 20px;
-    display: grid;
-    gap: 10px;
-    grid-template-columns: 200px;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 10px;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 200px;
+  background-color: #6b7283;
 }
+
+.assignChoreLabel {
+  font-size: 1.25rem;
+  color: #71d5f4;
+}
+
+
