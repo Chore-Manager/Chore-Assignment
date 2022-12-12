@@ -8,17 +8,22 @@ const Sidebar = () => {
   // names
   const [names, setNames] = useState([]);
   const [selectedName, setSelectedName] = useState(names[0]);
-  const [newName, setNewName] = useState('');
+  const [newName, setNewName] = useState(null);
 
   // rooms
   const [rooms, setRooms] = useState([]);
   const [selectedRoom, setSelectedRoom] = useState(rooms[0]);
-  const [newRoom, setNewRoom] = useState('');
 
   // chores
   const [chores, setChores] = useState([]);
   const [selectedChore, setSelectedChore] = useState(chores[0]);
-  const [newChore, setNewChore] = useState('');
+  const [newChore, setNewChore] = useState(null);
+
+  // state to show and hide add name form
+  const [nameShown, setNameShown] = useState(false);
+
+  // state to show and hide add chore form
+  const [choreShown, setChoreShown] = useState(false);
 
   // constantly checking for updates to name, room, and chores state
   useEffect(() => {
@@ -59,14 +64,14 @@ const Sidebar = () => {
         room: selectedRoom,
         assign: true,
       }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    });
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   };
 
   // deletes selected name from dropdown menu
@@ -91,7 +96,7 @@ const Sidebar = () => {
       });
   };
 
-  // adds new name from dropdown menu
+  // adds new name to the dropdown menu
   const addName = (e) => {
     e.preventDefault();
     fetch('http://localhost:3000/user', {
@@ -114,6 +119,64 @@ const Sidebar = () => {
       });
   };
 
+  // adds new chore to the dropdown menu
+  const addChore = (e) => {
+    e.preventDefault();
+    fetch('http://localhost:3000/chore', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        chore: newChore,
+        room: selectedRoom,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  // deletes selected chore from dropdown menu
+  const deleteChore = (e) => {
+    e.preventDefault();
+    fetch('http://localhost:3000/chore', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        chore: selectedChore,
+        room: selectedRoom,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  // show the addname form
+  const handleNameForm = (e) => {
+    e.preventDefault();
+    setNameShown((current) => !current);
+  };
+
+  // show the addchore form
+  const handleChoreForm = (e) => {
+    e.preventDefault();
+    setChoreShown((current) => !current);
+  };
+
   return (
     <div className="sidebar">
       <form className="choreForm">
@@ -125,16 +188,21 @@ const Sidebar = () => {
             setSelectedName={setSelectedName}
           />
           <button onClick={deleteName}>Delete current name</button>
-          <form className="add-name">
-            <input
-              name="newName"
-              placeholder="new name"
-              onChange={(e) => setNewName(e.target.value)}
-            />
-            <button type="submit" onClick={addName}>
-              Add Name
-            </button>
-          </form>
+
+          <button onClick={handleNameForm}>+</button>
+
+          {nameShown && (
+            <form className="add-name">
+              <input
+                name="newName"
+                placeholder="new name"
+                onChange={(e) => setNewName(e.target.value)}
+              />
+              <button type="submit" onClick={addName}>
+                Add Name
+              </button>
+            </form>
+          )}
         </div>
         <div>
           <ListRoom
@@ -142,15 +210,29 @@ const Sidebar = () => {
             selectedRoom={selectedRoom}
             setSelectedRoom={setSelectedRoom}
           />
-          <button>Add Room </button>
         </div>
         <div>
           <ListChore
             chores={chores}
+            selectedRoom={selectedRoom}
             selectedChore={selectedChore}
             setSelectedChore={setSelectedChore}
           />
-          <button>Add Chore </button>
+          <button onClick={deleteChore}>Delete current chore</button>
+
+          <button onClick={handleChoreForm}>+</button>
+          {choreShown && (
+            <form className="add-chore">
+              <input
+                name="newChore"
+                placeholder="add new chore"
+                onChange={(e) => setNewChore(e.target.value)}
+              />
+              <button type="submit" onClick={addChore}>
+                Add Chore
+              </button>
+            </form>
+          )}
         </div>
         <input type="submit" value="Submit" onClick={assignChore} />
       </form>
