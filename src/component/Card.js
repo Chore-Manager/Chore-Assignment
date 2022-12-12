@@ -3,6 +3,20 @@ import Icon from '@mdi/react'; //module for icons
 import { mdiDeleteForeverOutline, mdiCogOutline } from '@mdi/js'; //module for icons
 import style from './css/card.css';
 
+<<<<<<< HEAD
+const Card = ({ userName, users, chores, setChores, setUsers }) => {
+  const [rooms, setRooms] = useState([]);
+  const [selectedChore, setChore] = useState('');
+  const [selectedRoom, setRoom] = useState('');
+  const [assignedId, setAssigned_user_id] = useState('');
+
+  // const { chore, room, assigned_user_id } = chores;
+
+  // const assignedID = chores.map((chore) => {
+  //   return chore.assigned_user_id;
+  // });
+  // console.log('assignedID', assignedID);
+=======
 const Card = ({ userName, userID, users, chores, setChores, setUsers }) => {
   console.log(userName);
   console.log(userID);
@@ -18,6 +32,7 @@ const Card = ({ userName, userID, users, chores, setChores, setUsers }) => {
   });
 
   // console.log('selectedRoom', selectedRoom);
+>>>>>>> dev
 
   //delete user from database
   const deleteUser = async () => {

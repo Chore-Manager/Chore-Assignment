@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Card from './Card';
 import style from './css/displayCard.css';
 
-const DisplayCard = ({ users, chores, setUsers, setChores }) => {
-  console.log('users', users);
-  console.log('chores', chores);
+const DisplayCard = ({users, chores, setUsers, setChores}) => {
   //iterating over fetched data, passing it to Card component and rendering it to the page
   const userElems = users.map((user, index) => {
     return (

@@ -1,20 +1,33 @@
 import React from 'react';
 
-const ListChore = ({ chores, selectedChore, setSelectedChore }) => {
+const ListChore = ({
+  chores,
+  selectedChoreId,
+  setSelectedChoreId,
+  selectedRoom,
+}) => {
+  const choresArr = [];
+
+  chores.map((value) => {
+    if (value.room === selectedRoom) {
+      choresArr.push(
+        <option value={value.id} key={value.chore}>
+          {value.chore}
+        </option>
+      );
+    }
+  });
+
   return (
     <select
-      value={selectedChore}
-      onChange={(e) => setSelectedChore(e.target.value)}
+      value={selectedChoreId}
+      onChange={(e) => setSelectedChoreId(e.target.value)}
       selected
     >
       <option value="" disabled selected>
         Chore
       </option>
-      {chores.map((value) => (
-        <option value={value} key={value}>
-          {value}
-        </option>
-      ))}
+      {choresArr}
     </select>
   );
 };
