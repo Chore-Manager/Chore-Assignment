@@ -6,19 +6,18 @@ const DisplayCard = () => {
   // const [people, setPeople] = useState([]);
   const [users, setUsers] = useState([]);
   const [chores, setChores] = useState([]);
-  const [rooms, setRooms] = useState([]);
 
   console.log('users', users);
   console.log('chores', chores);
-  console.log('rooms', rooms);
 
+  //fetching all data from server and rendering it to the page
   useEffect(() => {
     fetch('/choresAndUsers')
       .then((response) => response.json())
       .then((data) => {
+        console.log('data', data);
         setUsers(data.users);
         setChores(data.chores);
-        setRooms(data.chores.room);
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -26,18 +25,14 @@ const DisplayCard = () => {
   }, []);
 
   //iterating over fetched data, passing it to Card component and rendering it to the page
-
   const userElems = users.map((user, index) => {
     return (
       <Card
         key={index}
         userName={user.name}
-        id={user.id}
         chores={chores}
         setChores={setChores}
         setUsers={setUsers}
-        setRooms={setRooms}
-        rooms={rooms}
       />
     );
   });
