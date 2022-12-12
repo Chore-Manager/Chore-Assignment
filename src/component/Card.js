@@ -1,24 +1,21 @@
 import React, { useEffect, useState } from 'react';
+import CardRoom from './CardRoom';
 import Icon from '@mdi/react'; //module for icons
 import { mdiDeleteForeverOutline, mdiCogOutline } from '@mdi/js'; //module for icons
 import style from './css/card.css';
 import classNames from 'classnames';
 
-const Card = ({ userName, userID, users, chores, setChores, setUsers }) => {
-  console.log(userName);
-  console.log(userID);
-  const assignRoomToUser = chores.map((chore) => {
-    if (chore.assigned_user_id === userID) {
-      return chore.room;
-    }
-  });
-  const assignChoreToRoom = chores.map((chore) => {
-    if (chore.assigned_user_id === userID) {
-      return chore.chore;
-    }
-  });
-
-  // console.log('selectedRoom', selectedRoom);
+const Card = ({
+  userName,
+  userID,
+  user,
+  chores,
+  setChores,
+  setUsers,
+  choreName,
+}) => {
+  const [allUserRooms, setAllUserRooms] = useState([]);
+  const [selectedRoom, setSelectedRoom] = useState('');
 
   //delete user from database
   const deleteUser = async () => {
@@ -69,44 +66,58 @@ const Card = ({ userName, userID, users, chores, setChores, setUsers }) => {
       console.error(err.message);
     }
   };
-  const cardClass = classNames('card', 'bg-primary');
-  const cardNameClass = classNames('card-name', 'bg-secondary');
+
+  const userRooms = chores.map((chore, index) => {
+    // console.log('creating user room');
+    if (chore.assigned_user_id === userID) {
+      // console.log(choreName);
+      return (
+        <CardRoom
+          key={index}
+          userID={userID}
+          roomName={chore.room}
+          chores={chore}
+        />
+      );
+    }
+  });
+
   return (
-    <div className={cardClass}>
-      <div className={cardNameClass}>
+    <div className="card bg-primary">
+      <div className="card-name bg-secondary">
         <h3>{userName}</h3>
       </div>
-      <div className="room">
-        <h4>Room: {assignRoomToUser}</h4>
-      </div>
-      <div className="chores">Chores: {assignChoreToRoom}</div>
-      <div className="actionsContainer">
-        <button
-          className="deleteBtn"
-          type="submit"
-          onClick={(e) => onDelete(e)}
-        >
-          <Icon
-            path={mdiDeleteForeverOutline}
-            // title="User Profile"
-            size={1}
-            horizontal
-            vertical
-            rotate={180}
-            color="white"
-          />
-        </button>
-        <button className="editBtn" type="submit" onClick={(e) => onEdit(e)}>
-          <Icon
-            path={mdiCogOutline}
-            // title="User Profile"
-            size={1}
-            horizontal
-            vertical
-            rotate={180}
-            color="white"
-          />
-        </button>
+      {userRooms}
+
+      <div className="footer">
+        <div className="actionsContainer">
+          <button
+            className="deleteBtn"
+            type="submit"
+            onClick={(e) => onDelete(e)}
+          >
+            <Icon
+              path={mdiDeleteForeverOutline}
+              // title="User Profile"
+              size={1}
+              horizontal
+              vertical
+              rotate={180}
+              color="white"
+            />
+          </button>
+          <button className="editBtn" type="submit" onClick={(e) => onEdit(e)}>
+            <Icon
+              path={mdiCogOutline}
+              // title="User Profile"
+              size={1}
+              horizontal
+              vertical
+              rotate={180}
+              color="white"
+            />
+          </button>
+        </div>
       </div>
     </div>
   );

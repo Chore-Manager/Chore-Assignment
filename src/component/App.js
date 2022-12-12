@@ -8,8 +8,10 @@ import style from './css/app.css';
 export default function App() {
   const [users, setUsers] = useState([]);
   const [chores, setChores] = useState([]);
+  const [choreName, setChoreName] = useState('');
 
   useEffect(() => {
+    console.log('Fetching chores');
     fetch('/choresAndUsers')
       .then((response) => response.json())
       .then((data) => {
