@@ -14,9 +14,9 @@ router.post('/', choreController.addChore, (req, res) => {
 });
 
 // patch requests to chore would be for assigning new chores to a user
-router.patch('/', choreController.updateChore, (req, res) => {
-  return res.status(200).json(res.locals.response);
-});
+// router.patch('/', choreController.updateChore, (req, res) => {
+//   return res.status(200).json(res.locals.response);
+// });
 
 // delete requests to chore should remove the row from the database
 router.delete('/', choreController.deleteChore, (req, res) => {

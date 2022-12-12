@@ -43,45 +43,26 @@ const choreController = {
 
   // assign a chore to a user
   // TODO: edit front end to send the chore id and the user id, allows us to do this with one query
-  updateChore: async (req, res, next) => {
-    const { chore, name, room, assign } = req.body;
+  updateChore: (req, res, next) => {
+    const { choreID, userID, assign } = req.body;
     // check if assign is true or false
     // get the chore with the matching choreName and room,
     // get the name that matches the given userName
     // assign the userName ID to the assigned user ID value on the chore
-    let userID;
     // if we are assigning a user, we get the user id, if not, we are setting the assigned id to be an empty string
-    if (assign === true) {
-      console.log('asssign status: ', assign);
-      const userNameQuery = `SELECT ID 
-      FROM users
-      WHERE name=$1;`;
-      const userNameValue = [name];
-      // first query to get the user ID based on the user name
-      await db
-        .query(userNameQuery, userNameValue)
-        .then((data) => {
-          userID = data.rows[0].id;
-          console.log('user ID', userID);
-        })
-        .catch((error) => {
-          return next({
-            log: 'error when getting userID in updateChore in choreController',
-            message: `error: ${error}`,
-          });
-        });
-    }
-    const choreQuery = `UPDATE chores 
+    let userIDOption = '';
+    if (assign) userIDOption = userID;
+
+    const text = `UPDATE chores
     SET assigned_user_id=$1
-    WHERE chore=$2 AND room=$3;`;
-    console.log('user ID after first query: ', userID);
-    const choreValues = [userID, chore, room];
+    WHERE ID=$2;`;
+
+    const values = [userIDOption, choreID];
     // second query to update the assigned user in the chore table
-    await db
-      .query(choreQuery, choreValues)
+    db.query(text, values)
       .then(() => {
         console.log('successfully assigned chore');
-        res.locals.response = `assigned ${chore} to ${name}`;
+        res.locals.response = `assigned chore# ${choreID} to user# ${userID}`;
         return next();
       })
       .catch((error) => {
@@ -91,15 +72,14 @@ const choreController = {
         });
       });
   },
-
   deleteChore: (req, res, next) => {
-    const { chore, room } = req.body;
+    const { choreID } = req.body;
     const text = `DELETE FROM chores
-    WHERE chore=$1 AND room=$2;`;
-    const values = [chore, room];
+    WHERE ID=$1`;
+    const values = [choreID];
     db.query(text, values)
       .then(() => {
-        res.locals.response = `deleted ${chore} in ${room} from the DB.`;
+        res.locals.response = `deleted ${choreID} from the DB.`;
         return next();
       })
       .catch((error) => {

@@ -14,7 +14,8 @@ CREATE TABLE chores
 (ID SERIAL PRIMARY KEY,
 chore VARCHAR NOT NULL,
 room VARCHAR NOT NULL,
-assigned_user_id INT);
+assigned_user_id INT
+);
 
 users
 **********
