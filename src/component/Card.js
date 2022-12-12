@@ -1,38 +1,20 @@
 import React, { useEffect, useState } from 'react';
+import CardRoom from './CardRoom';
 import Icon from '@mdi/react'; //module for icons
 import { mdiDeleteForeverOutline, mdiCogOutline } from '@mdi/js'; //module for icons
 import style from './css/card.css';
 
-<<<<<<< HEAD
-const Card = ({ userName, users, chores, setChores, setUsers }) => {
-  const [rooms, setRooms] = useState([]);
-  const [selectedChore, setChore] = useState('');
-  const [selectedRoom, setRoom] = useState('');
-  const [assignedId, setAssigned_user_id] = useState('');
-
-  // const { chore, room, assigned_user_id } = chores;
-
-  // const assignedID = chores.map((chore) => {
-  //   return chore.assigned_user_id;
-  // });
-  // console.log('assignedID', assignedID);
-=======
-const Card = ({ userName, userID, users, chores, setChores, setUsers }) => {
-  console.log(userName);
-  console.log(userID);
-  const assignRoomToUser = chores.map((chore) => {
-    if (chore.assigned_user_id === userID) {
-      return chore.room;
-    }
-  });
-  const assignChoreToRoom = chores.map((chore) => {
-    if (chore.assigned_user_id === userID) {
-      return chore.chore;
-    }
-  });
-
-  // console.log('selectedRoom', selectedRoom);
->>>>>>> dev
+const Card = ({
+  userName,
+  userID,
+  user,
+  chores,
+  setChores,
+  setUsers,
+  choreName,
+}) => {
+  const [allUserRooms, setAllUserRooms] = useState([]);
+  const [selectedRoom, setSelectedRoom] = useState('');
 
   //delete user from database
   const deleteUser = async () => {
@@ -84,15 +66,28 @@ const Card = ({ userName, userID, users, chores, setChores, setUsers }) => {
     }
   };
 
+  const userRooms = chores.map((chore, index) => {
+    // console.log('creating user room');
+    if (chore.assigned_user_id === userID) {
+      // console.log(choreName);
+      return (
+        <CardRoom
+          key={index}
+          userID={userID}
+          roomName={chore.room}
+          chores={chore}
+        />
+      );
+    }
+  });
+
   return (
     <div className="card">
       <div className="card-name">
         <h3>{userName}</h3>
       </div>
-      <div className="room">
-        <h4>Room: {assignRoomToUser}</h4>
-      </div>
-      <div className="chores">Chores: {assignChoreToRoom}</div>
+      {userRooms}
+
       <div className="footer">
         <div className="actionsContainer">
           <button
