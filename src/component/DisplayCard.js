@@ -8,7 +8,8 @@ const DisplayCard = ({users, chores, setUsers, setChores}) => {
     return (
       <Card
         key={index}
-        userName={users.name}
+        userName={user.name}
+        userID={user.id}
         chores={chores}
         setChores={setChores}
         setUsers={setUsers}

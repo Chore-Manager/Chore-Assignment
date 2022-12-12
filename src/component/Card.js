@@ -3,6 +3,7 @@ import Icon from '@mdi/react'; //module for icons
 import { mdiDeleteForeverOutline, mdiCogOutline } from '@mdi/js'; //module for icons
 import style from './css/card.css';
 
+<<<<<<< HEAD
 const Card = ({ userName, users, chores, setChores, setUsers }) => {
   const [rooms, setRooms] = useState([]);
   const [selectedChore, setChore] = useState('');
@@ -15,6 +16,23 @@ const Card = ({ userName, users, chores, setChores, setUsers }) => {
   //   return chore.assigned_user_id;
   // });
   // console.log('assignedID', assignedID);
+=======
+const Card = ({ userName, userID, users, chores, setChores, setUsers }) => {
+  console.log(userName);
+  console.log(userID);
+  const assignRoomToUser = chores.map((chore) => {
+    if (chore.assigned_user_id === userID) {
+      return chore.room;
+    }
+  });
+  const assignChoreToRoom = chores.map((chore) => {
+    if (chore.assigned_user_id === userID) {
+      return chore.chore;
+    }
+  });
+
+  // console.log('selectedRoom', selectedRoom);
+>>>>>>> dev
 
   //delete user from database
   const deleteUser = async () => {
@@ -23,7 +41,7 @@ const Card = ({ userName, users, chores, setChores, setUsers }) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ name: userName }),
+      body: JSON.stringify({ id: userID }),
     });
     const data = await response.json();
     setUsers((prev) => prev.filter((user) => user.name !== userName)); //filtering out the deleted user from the state
@@ -72,14 +90,9 @@ const Card = ({ userName, users, chores, setChores, setUsers }) => {
         <h3>{userName}</h3>
       </div>
       <div className="room">
-        <h4>Room: {}</h4>
+        <h4>Room: {assignRoomToUser}</h4>
       </div>
-      {/* <div className="chores">
-        Chores:  */}
-      {/* {person.map((chore, index) => (
-          <h4 key={index}>{chore}</h4>
-        ))} */}
-      {/* </div> */}
+      <div className="chores">Chores: {assignChoreToRoom}</div>
       <div className="footer">
         <div className="actionsContainer">
           <button
