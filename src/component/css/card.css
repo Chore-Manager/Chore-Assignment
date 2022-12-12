@@ -3,27 +3,32 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
-    rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  /* box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+    rgba(0, 0, 0, 0.22) 0px 10px 10px; */
   width: 300px;
   height: 500px;
   margin: 10px;
-  background-color: #6b7283;
+  /* background-color: #6b7283; */
   border-radius: 12px;
-  color: rgb(50, 50, 50);
+  /* color: rgb(50, 50, 50); */
 }
 
 .card-name {
   text-align: center;
-  color: #71d5f4;
+  padding: 10px;
+  border-radius: 10px;
+  width: 60%;
+  font-size: 20px;
+  font-weight: bolder;
 }
 
 .deleteBtn,
 .editBtn {
-  background-color: #6b7283;
+  /* background-color: #6b7283; */
   border: none;
   transition: 0.3s all ease-in-out;
   cursor: pointer;
+  padding: 10px;
 }
 
 .deleteBtn:hover {

@@ -3,6 +3,8 @@ import CardRoom from './CardRoom';
 import Icon from '@mdi/react'; //module for icons
 import { mdiDeleteForeverOutline, mdiCogOutline } from '@mdi/js'; //module for icons
 import style from './css/card.css';
+import classNames from 'classnames';
+
 
 const Card = ({
   userName,
@@ -82,10 +84,11 @@ const Card = ({
   });
 
   return (
-    <div className="card">
-      <div className="card-name">
+    <div className={cardClass}>
+      <div className={cardNameClass}>
         <h3>{userName}</h3>
       </div>
+
       {userRooms}
 
       <div className="footer">

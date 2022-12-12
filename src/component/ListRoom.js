@@ -11,6 +11,7 @@ const ListRoom = ({ chores, selectedRoom, setSelectedRoom }) => {
   const uniqueRooms = [...new Set(allRooms)];
   return (
     <select
+      className="select"
       value={selectedRoom}
       onChange={(e) => setSelectedRoom(e.target.value)}
       selected
