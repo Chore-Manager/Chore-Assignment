@@ -3,7 +3,7 @@ const db = require('../model/dbModel');
 const choreController = {
   // middleware to get all chores from the db
   getChores: (req, res, next) => {
-    const text = `SELECT * 
+    const text = `SELECT id, chore, room, assigned_user_id 
     FROM chores;`;
     // query the db to get all chores
     db.query(text)
@@ -42,8 +42,9 @@ const choreController = {
   },
 
   // assign a chore to a user
+  // TODO: edit front end to send the chore id and the user id, allows us to do this with one query
   updateChore: async (req, res, next) => {
-    const { choreName, userName, room, assign } = req.body;
+    const { chore, name, room, assign } = req.body;
     // check if assign is true or false
     // get the chore with the matching choreName and room,
     // get the name that matches the given userName
@@ -55,7 +56,7 @@ const choreController = {
       const userNameQuery = `SELECT ID 
       FROM users
       WHERE name=$1;`;
-      const userNameValue = [userName];
+      const userNameValue = [name];
       // first query to get the user ID based on the user name
       await db
         .query(userNameQuery, userNameValue)
@@ -74,13 +75,13 @@ const choreController = {
     SET assigned_user_id=$1
     WHERE chore=$2 AND room=$3;`;
     console.log('user ID after first query: ', userID);
-    const choreValues = [userID, choreName, room];
+    const choreValues = [userID, chore, room];
     // second query to update the assigned user in the chore table
     await db
       .query(choreQuery, choreValues)
       .then(() => {
         console.log('successfully assigned chore');
-        res.locals.response = `assigned ${choreName} to ${userName}`;
+        res.locals.response = `assigned ${chore} to ${name}`;
         return next();
       })
       .catch((error) => {

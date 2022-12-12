@@ -54,8 +54,8 @@ const Sidebar = () => {
         Accept: 'application/json',
       },
       body: JSON.stringify({
-        choreName: selectedChore,
-        userName: selectedName,
+        chore: selectedChore,
+        name: selectedName,
         room: selectedRoom,
         assign: true,
       }),
