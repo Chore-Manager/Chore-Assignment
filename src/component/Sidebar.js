@@ -176,7 +176,7 @@ const Sidebar = ({ users, chores, setUsers, setChores }) => {
   };
 
   return (
-    <div className="sidebar">
+    <div className="bg-base-300 sidebar">
       <form className="choreForm">
         <label className="assignChoreLabel">Assign a Chore: </label>
         <div>
@@ -185,18 +185,27 @@ const Sidebar = ({ users, chores, setUsers, setChores }) => {
             selectedUserId={selectedUserId}
             setSelectedUserId={setSelectedUserId}
           />
-          <button onClick={deleteName}>Delete current name</button>
-
-          <button onClick={handleNameForm}>+</button>
+          <button className="btn btn-sm" onClick={handleNameForm}>
+            +
+          </button>
+          <button className="btn btn-sm glass" onClick={deleteName}>
+            Delete current name
+          </button>
 
           {nameShown && (
             <form className="add-name">
               <input
+                className="input input-bordered input-primary"
+                type="text"
                 name="newName"
                 placeholder="new name"
                 onChange={(e) => setNewName(e.target.value)}
               />
-              <button type="submit" onClick={addName}>
+              <button
+                className="btn btn-sm btn-secondary"
+                type="submit"
+                onClick={addName}
+              >
                 Add Name
               </button>
             </form>
@@ -216,28 +225,45 @@ const Sidebar = ({ users, chores, setUsers, setChores }) => {
             selectedChoreId={selectedChoreId}
             setSelectedChoreId={setSelectedChoreId}
           />
-          <button onClick={deleteChore}>Delete current chore</button>
+          <button className="btn btn-sm" onClick={handleChoreForm}>
+            +
+          </button>
+          <button className="btn btn-sm glass" onClick={deleteChore}>
+            Delete current chore
+          </button>
 
-          <button onClick={handleChoreForm}>+</button>
           {choreShown && (
             <form className="add-chore">
               <input
+                className="input input-bordered input-primary"
+                type="text"
                 name="newChore"
                 placeholder="add new chore"
                 onChange={(e) => setNewChore(e.target.value)}
               />
               <input
+                className="input input-bordered input-primary"
+                type="text"
                 name="newRoom"
                 placeholder="add new room"
                 onChange={(e) => setNewRoom(e.target.value)}
               />
-              <button type="submit" onClick={addChore}>
+              <button
+                className="btn btn-secondary btn-sm"
+                type="submit"
+                onClick={addChore}
+              >
                 Add Chore
               </button>
             </form>
           )}
         </div>
-        <input type="submit" value="Submit" onClick={assignChore} />
+        <input
+          className="btn btn-primary"
+          type="submit"
+          value="Submit"
+          onClick={assignChore}
+        />
       </form>
     </div>
   );

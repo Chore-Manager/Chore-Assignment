@@ -1,14 +1,16 @@
 header {
   display: flex;
   justify-content: space-between;
-  border: 1px solid black;
-  background-color: #111111;
+  /* border: 1px solid black;
+  background-color: #111111; */
 }
 
-/* .navbar {
-  background-color: #332941;
-} */
+.navbar {
+  /* background-color: #332941; */
+  display: flex;
+  justify-content: center;
+}
 
 .navbar h2 {
-  color: #404258;
+  /* color: #404258; */
 }
