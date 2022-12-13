@@ -19,9 +19,10 @@ app.use(cors());
 // handle parsing of request body
 app.use(express.json());
 
-// handle static requests - double check with Rachel
+// handle static requests
 app.use(express.static('client'));
 
+// send back all the users and all the chores in the db
 app.get(
   '/choresAndUsers',
   choreController.getChores,

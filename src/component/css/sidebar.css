@@ -10,12 +10,10 @@
   display: grid;
   gap: 10px;
   grid-template-columns: 200px;
-  /* background-color: #6b7283; */
 }
 
 .assignChoreLabel {
   font-size: 1.25rem;
-  /* color: #71d5f4; */
 }
 
 button {

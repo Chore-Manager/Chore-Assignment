@@ -1,9 +1,8 @@
-// controller for user middleware
-const db = require('../model/dbModel');
-
 const jointController = {};
 
 jointController.combineUsersAndChores = async (req, res, next) => {
+  // combines the results from getting the chores and getting the users to pass
+  //    all data to the front end
   try {
     const chores = res.locals.chores;
     const users = res.locals.users;
