@@ -27,8 +27,8 @@ export default function CardRoom({ chores, roomName, userID }) {
     <div className="card-room">
       <div className="checkbox">
         <input type="checkbox" onClick={handleClick} value={chores.id}></input>
-        {roomName} {chores.chore}
       </div>
+      <span>{chores.chore}</span>
     </div>
   );
 }

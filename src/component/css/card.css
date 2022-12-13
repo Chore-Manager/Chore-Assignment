@@ -20,8 +20,35 @@
   width: 60%;
   font-size: 20px;
   font-weight: bolder;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
+.card-room {
+  width: max-content;
+  display: flex;
+}
+.room-name {
+  text-align: center;
+  font-size: 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.checkbox {
+  border: none;
+  outline: none;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+}
+.actionsContainer {
+  display: flex;
+  justify-content: center;
+}
 .deleteBtn,
 .editBtn {
   /* background-color: #6b7283; */

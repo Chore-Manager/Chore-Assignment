@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import CardRoom from './CardRoom';
+import Room from './Room';
 import Icon from '@mdi/react'; //module for icons
 import { mdiDeleteForeverOutline, mdiCogOutline } from '@mdi/js'; //module for icons
 import style from './css/card.css';
@@ -67,18 +68,30 @@ const Card = ({
     }
   };
 
-  const userRooms = chores.map((chore, index) => {
-    console.log('chores', chores);
-    if (chore.assigned_user_id === userID) {
-      return (
-        <CardRoom
-          key={index}
-          userID={userID}
-          roomName={chore.room}
-          chores={chore}
-        />
-      );
+  const roomObj = {};
+
+  const rooms = chores.map((chore) => {
+    const room = chore.room;
+    if (roomObj[room] === undefined) {
+      roomObj[room] = [];
     }
+    roomObj[room].push(chore);
+  });
+
+  const userRooms = chores.map((chore, index) => {
+    // console.log('chores', chores);
+    if (chore.assigned_user_id === userID) {
+      return <CardRoom key={index} userID={userID} chores={chore} />;
+    }
+  });
+
+  const onlyRooms = Object.keys(roomObj).map((room, index) => {
+    return (
+      <div className="card-component" key={index}>
+        <div className="room-name">{room}</div>
+        {userRooms}
+      </div>
+    );
   });
 
   return (
@@ -86,8 +99,7 @@ const Card = ({
       <div className="card-name bg-secondary">
         <h3>{userName}</h3>
       </div>
-      {userRooms}
-
+      {onlyRooms}
       <div className="footer">
         <div className="actionsContainer">
           <button
