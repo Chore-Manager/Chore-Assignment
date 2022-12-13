@@ -1,10 +1,6 @@
 import React from 'react';
 
-export default function CardRoom({ chores, roomName, userID }) {
-  //   const assignChoreToRoom = chores.map((chore) => {
-  //     return chore.room;
-  //   });
-
+export default function CardRoom({ chores }) {
   const handleClick = async (e) => {
     //fetch request to update chore
     e.preventDefault();
@@ -22,7 +18,7 @@ export default function CardRoom({ chores, roomName, userID }) {
     const data = await response.json();
     console.log('Patched Data: ', data);
   };
-  console.log('chores:', chores);
+  // console.log('chores:', chores);
   return (
     <div className="card-room">
       <div className="checkbox">
