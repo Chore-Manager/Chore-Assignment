@@ -5,18 +5,7 @@ import { mdiDeleteForeverOutline, mdiCogOutline } from '@mdi/js'; //module for i
 import style from './css/card.css';
 import classNames from 'classnames';
 
-const Card = ({
-  userName,
-  userID,
-  user,
-  chores,
-  setChores,
-  setUsers,
-  choreName,
-}) => {
-  const [allUserRooms, setAllUserRooms] = useState([]);
-  const [selectedRoom, setSelectedRoom] = useState('');
-
+const Card = ({ userName, userID, chores, setUsers }) => {
   //delete user from database
   const deleteUser = async () => {
     const response = await fetch('/user', {
@@ -67,17 +56,32 @@ const Card = ({
     }
   };
 
-  const userRooms = chores.map((chore, index) => {
-    if (chore.assigned_user_id === userID) {
-      return (
-        <CardRoom
-          key={index}
-          userID={userID}
-          roomName={chore.room}
-          chores={chore}
-        />
-      );
+  //filtering chores by room
+  const roomObj = {};
+
+  const rooms = chores.map((chore) => {
+    const room = chore.room;
+    if (roomObj[room] === undefined) {
+      roomObj[room] = [];
     }
+    roomObj[room].push(chore);
+  });
+
+  //rendering rooms, filtering chores by room
+  const userRooms = chores.map((chore, index) => {
+    // console.log('chores', chores);
+    if (chore.assigned_user_id === userID) {
+      return <CardRoom key={index} chores={chore} />;
+    }
+  });
+  //rendering rooms and chores
+  const onlyRooms = Object.keys(roomObj).map((room, index) => {
+    return (
+      <div className="card-component" key={index}>
+        <div className="room-name">{room}</div>
+        {userRooms}
+      </div>
+    );
   });
 
   return (
@@ -85,9 +89,7 @@ const Card = ({
       <div className="card-name bg-secondary">
         <h3>{userName}</h3>
       </div>
-
-      {userRooms}
-
+      {onlyRooms}
       <div className="footer">
         <div className="actionsContainer">
           <button
@@ -97,7 +99,6 @@ const Card = ({
           >
             <Icon
               path={mdiDeleteForeverOutline}
-              // title="User Profile"
               size={1}
               horizontal
               vertical
@@ -108,7 +109,6 @@ const Card = ({
           <button className="editBtn" type="submit" onClick={(e) => onEdit(e)}>
             <Icon
               path={mdiCogOutline}
-              // title="User Profile"
               size={1}
               horizontal
               vertical
