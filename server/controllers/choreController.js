@@ -41,15 +41,10 @@ const choreController = {
       });
   },
 
-  // assign a chore to a user
-  // TODO: edit front end to send the chore id and the user id, allows us to do this with one query
+  // assign or unassign a chore to a user
   updateChore: (req, res, next) => {
     const { choreID, userID, assign } = req.body;
-    // check if assign is true or false
-    // get the chore with the matching choreName and room,
-    // get the name that matches the given userName
-    // assign the userName ID to the assigned user ID value on the chore
-    // if we are assigning a user, we get the user id, if not, we are setting the assigned id to be an empty string
+    // declare a null option ID for if we are unassigning and need to change the assigned value to null
     let userIDOption = null;
     res.locals.response = `unassigned chore# ${choreID}`;
     if (assign) {
@@ -60,9 +55,9 @@ const choreController = {
     const text = `UPDATE chores
     SET assigned_user_id=$1
     WHERE ID=$2;`;
-
     const values = [userIDOption, choreID];
-    // second query to update the assigned user in the chore table
+
+    // query the chore db and update the assigned user id
     db.query(text, values)
       .then(() => {
         console.log('successfully assigned chore');
@@ -75,6 +70,7 @@ const choreController = {
         });
       });
   },
+  // delete a chore row from the db
   deleteChore: (req, res, next) => {
     const { choreID } = req.body;
     const text = `DELETE FROM chores

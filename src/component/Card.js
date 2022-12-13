@@ -68,9 +68,7 @@ const Card = ({
   };
 
   const userRooms = chores.map((chore, index) => {
-    // console.log('creating user room');
     if (chore.assigned_user_id === userID) {
-      // console.log(choreName);
       return (
         <CardRoom
           key={index}
