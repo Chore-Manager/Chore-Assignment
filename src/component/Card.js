@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import CardRoom from './CardRoom';
-import Room from './Room';
 import Icon from '@mdi/react'; //module for icons
 import { mdiDeleteForeverOutline, mdiCogOutline } from '@mdi/js'; //module for icons
 import style from './css/card.css';
