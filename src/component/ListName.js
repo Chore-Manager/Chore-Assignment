@@ -6,6 +6,7 @@ const ListName = ({ users, selectedUserId, setSelectedUserId }) => {
       className="select"
       value={selectedUserId}
       onChange={(e) => setSelectedUserId(e.target.value)}
+      data-testId='list'
       selected
     >
       <option defaultValue="Name" disabled selected>
