@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import ListName from './ListName';
 import ListRoom from './ListRoom';
 import ListChore from './ListChore';
-import style from './css/sidebar.css';
 
 const Sidebar = ({ users, chores, setUsers, setChores }) => {
   // names
@@ -178,7 +177,7 @@ const Sidebar = ({ users, chores, setUsers, setChores }) => {
 
   return (
     <div className="bg-base-300 sidebar">
-      <form className="choreForm">
+      <form className="choreForm" data-testId='form'>
         <label className="assignChoreLabel">Assign a Chore: </label>
         <div>
           <ListName
